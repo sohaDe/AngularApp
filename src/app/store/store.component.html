@@ -1,0 +1,870 @@
+<nz-layout [dir]="isRtl ? 'rtl' : 'ltr'">
+    <nz-header>
+      <div class="logo">
+        <img nz-image nzSrc="assets/images/logo.png" alt="logo">
+      </div>
+      <button class="dropdown-but" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        <span class="fi" [ngClass]="getFlagIconClass()"></span>
+        <span class="language">{{ isRtl ? 'العربية' : 'En' }}</span>
+        <span nz-icon nzType="down" nzTheme="outline"></span>
+      </button>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="switchToRtl('en')"><span class="fi fi-us fis"></span>En</li>
+          <li nz-menu-item (click)="switchToRtl('ar')"> <span class="fi fi-sa fis"></span>العربية</li>
+          <li nz-menu-item><span class="fi fi-fr fis"></span>French</li>
+          <li nz-menu-item><span class="fi fi-de fis"></span>German</li>
+          <li nz-menu-item><span class="fi fi-it fis"></span>Italian</li>
+          <li nz-menu-item><span class="fi fi-cn fis"></span>Chinese</li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-header>
+    <nz-content class="outer-content">
+  
+      <nz-layout class="inner-layout">
+        <nz-sider nzWidth="200px" nzTheme="light">
+          <div class="side-page">
+            <div class="steps">
+              <nz-steps nzDirection="vertical" [nzCurrent]="index" (nzIndexChange)="onIndexChange($event)">
+                <nz-step nzTitle="Main data"></nz-step>
+                <nz-step nzTitle="Store name"></nz-step>
+                <nz-step nzTitle="To know you"></nz-step>
+                <nz-step nzTitle="Main place"></nz-step>
+                <nz-step nzTitle="Product type"></nz-step>
+                <nz-step nzTitle="Package types"></nz-step>
+                <nz-step nzTitle="Workspace"></nz-step>
+              </nz-steps>
+            </div>
+  
+            <div class="steps-img">
+              <img nz-image nzSrc="assets/images/steps.png" alt="steps-img">
+            </div>
+          </div>
+        </nz-sider>
+  
+  
+        <nz-content class="inner-content">
+          <div class="horizontal-step">
+            <nz-steps nzDirection="horizontal" [nzCurrent]="index" (nzIndexChange)="onIndexChange($event)">
+              <nz-step></nz-step>
+              <nz-step></nz-step>
+              <nz-step></nz-step>
+              <nz-step></nz-step>
+              <nz-step></nz-step>
+              <nz-step></nz-step>
+            </nz-steps>
+          </div>
+          <nz-card class="card-gradient" *ngIf="index === 0">
+            <div class="first">
+              <span class="store-name">Store Name</span>
+              <span class="store-info">Enter your store name and link</span>
+            </div>
+  
+            <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+              <nz-form-item>
+                <nz-form-label
+                  style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                  class="label" nzFor="name">Store Name</nz-form-label>
+                <nz-form-control nzErrorTip="Please input your store name!">
+                  <input class="input-" nz-input formControlName="name" id="name" />
+                </nz-form-control>
+              </nz-form-item>
+  
+              <nz-form-item>
+                <nz-form-label
+                  style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                  class="label" nzFor="name">Your Store's Link</nz-form-label>
+                <nz-form-control nzErrorTip="Please input your store's link!">
+                  <nz-input-group class="input-" [nzPrefix]="prefixTemplateUser" [nzSuffix]="suffixTemplateUser">
+  
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser>
+                    <span class="span1">https://</span>
+                  </ng-template>
+                  <ng-template #suffixTemplateUser>
+                    <span class="span2">domain</span>
+                  </ng-template>
+  
+                </nz-form-control>
+              </nz-form-item>
+              <div class="form-buttons">
+                <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                <button (click)="back()" class="back-button" nz-button>Back</button>
+              </div>
+            </form>
+  
+          </nz-card>
+  
+          <!-- nz card2  -->
+          <nz-card class="card-gradient" *ngIf="index === 1">
+            <div class="first">
+              <span class="store-name">Store Name</span>
+              <span class="store-info">Enter your store name and link</span>
+            </div>
+  
+            <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+              <nz-form-item>
+                <nz-form-label
+                  style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                  class="label" nzFor="name">Store Name</nz-form-label>
+                <nz-form-control nzErrorTip="Please input your store name!">
+                  <nz-input-group class="input-" nzPrefix="test">
+                    <input type="text" formControlName="name" id="name" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+  
+              <nz-form-item>
+                <nz-form-label
+                  style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                  class="label" nzFor="name">Your Store's Link</nz-form-label>
+                <nz-form-control nzErrorTip="Please input your store's link!">
+                  <nz-input-group class="input-" [nzPrefix]="prefixTemplateUser" [nzSuffix]="suffixTemplateUser">
+  
+                    <input type="text" nz-input />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser>
+                    <span class="span1">https://</span>
+                  </ng-template>
+                  <ng-template #suffixTemplateUser>
+                    <span class="span2">domain</span>
+                  </ng-template>
+  
+                </nz-form-control>
+              </nz-form-item>
+              <p>Your Store's Link</p>
+              <div class="store-link">
+                <a>http://test.yseer.com</a>
+                <span>You can change it or add your own domain later</span>
+              </div>
+              <div class="form-buttons">
+                <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                <button (click)="back()" class="back-button" nz-button>Back</button>
+              </div>
+            </form>
+  
+          </nz-card>
+  
+          <!-- nz card3 -->
+          <nz-card  *ngIf="index === 2" class="card-margin card-gradient" [ngClass]="{'other-margin' : showplatform}">
+            <p class="help margin">Help us get to know you better</p>
+  
+            <div class="info margin">
+              <span>Have you had any previous business experience ?</span>
+              <div class="info-button">
+                <button nz-button [ngClass]="{'additional-color' : showform}"  (click)="showform = true">Yes</button>
+                <button nz-button (click)="shownoform = true">No,not yet</button>
+              </div>
+            </div>
+  <!-- add  -->
+  <div  *ngIf="shownoform">
+    <div class="info margin">
+      <span>Do you have a product or service available for sale?</span>
+      <div class="info-button">
+        <button nz-button class="color-show" [ngClass]="{'other-color' : otherques}">Yes</button>
+        <button nz-button [ngClass]="{'additional-color' : otherques}" (click)="otherques=true">No</button>
+      </div>
+    </div>
+      <div class="info margin" *ngIf="otherques">
+        <span>What is your goal in creating the store?</span>
+        <div class="info-button">
+          <button nz-button>Exploration</button>
+          <button nz-button class="color-show">Learn trade</button>
+          <button nz-button>Real trade</button>
+          <button nz-button>Shopping</button>
+          <button nz-button>All other</button>
+        </div>
+      </div>
+    <div class="info margin" [ngClass]="{'lessshow' : otherques}">
+      <span>What is the nature of the product or service?</span>
+      <div class="info-button">
+        <button nz-button class="color-show">Physical</button>
+        <button nz-button>Digital</button>
+      </div>
+    </div>
+    
+    <div class="info margin">
+      <span>Do you need a commercial and marketing guide?</span>
+      <div class="info-button">
+        <button nz-button class="color-show">Yes</button>
+        <button nz-button>No</button>
+      </div>
+    </div>
+    
+    <!-- end add  -->
+  
+            <div class="buttons" [ngClass]="{'additional-margin' : shownoform}">
+              <button (click)="next()" class="skip-button" nz-button>Skip</button>
+              <div class="form-info-buttons">
+                <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                <button (click)="back()" class="back-button" nz-button>Back</button>
+              </div>
+            </div>
+            </div>
+            <form nz-form nzLayout="vertical"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+              <form *ngIf="showform">
+                <div class="info margin" >
+                  <span>Is this your first online store?</span>
+                  <div class="info-button">
+                    <button nz-button [ngClass]="{'other-color' : showplatform}" class="color-show">Yes</button>
+                    <button nz-button [ngClass]="{'additional-color' : showplatform}"
+                      (click)="showplatform = true">No</button>
+                  </div>
+                </div>
+                <div class="info margin" [ngClass]="{'lessshow' : showplatform}" >
+                  <span>How was your experience owning a store previously?</span>
+                  <div class="size-buttons">
+                    <button nz-button>Physical store</button>
+                    <button nz-button class="color-show">Social media platform</button>
+                  </div>
+                </div>
+                <!-- additional show when no click  -->
+                <div class="info margin" *ngIf="showplatform" >
+                  <span>Which platform your previous store was on?</span>
+                  <div class="info-button">
+                    <button nz-button>Yseer</button>
+                    <button nz-button>Salla</button>
+                    <button nz-button>Zid</button>
+                    <button nz-button>Shopify</button>
+                    <button nz-button>Makani</button>
+                    <button nz-button class="color-show">Other</button>
+                  </div>
+                </div>
+                <form  *ngIf="showplatform" nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form"
+                  (ngSubmit)="submitForm()">
+                  <nz-form-item>
+                    <nz-form-label
+                      style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                      class="label" nzFor="name">Share with us the name of the platform</nz-form-label>
+                    <nz-form-control nzErrorTip="Please input your platform name!">
+                      <input class="input-" type="text" formControlName="platform" id="platform" nz-input />
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+                <!-- end of additional show platform  -->
+  
+  
+                <div class="info margin" >
+                  <span>Estimate the approximate annual sales volume</span>
+                  <div class="size-buttons">
+                    <button nz-button>Less than 50K</button>
+                    <button nz-button class="color-show">50K - 100K</button>
+                    <button nz-button>100K - 1M</button>
+                    <button nz-button>More than 1M</button>
+                  </div>
+                </div>
+                
+                <div class="info margin">
+                  <span>Do you need a commercial and marketing guide?</span>
+                  <div class="info-button">
+                    <button nz-button class="color-show">Yes</button>
+                    <button nz-button>No</button>
+                  </div>
+                </div>
+              </form>
+              <div class="buttons" [ngClass]="{'additional-margin' : showform, 'lessshow' : shownoform}">
+                <button [ngClass]="{'moreshow' : showform}" (click)="next()" class="skip-button" nz-button>Skip</button>
+                <div class="form-info-buttons">
+                  <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                  <button (click)="back()" class="back-button" nz-button>Back</button>
+                </div>
+              </div>
+            </form>
+          </nz-card>
+  
+          <!-- nz-card 4 -->
+          <nz-card class="card-gradient" *ngIf="index === 3">
+            <div class="first">
+              <span class="store-name">Main Place For Your Business</span>
+              <span class="store-info">Specify the country where your business is based,this will not affect your account
+                settings</span>
+            </div>
+            <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+              <nz-form-item>
+                <nz-form-label
+                  style="font-size: 16px !important;font-weight: 400 !important;line-height: 24px !important;letter-spacing: 0px !important;"
+                  class="label" nzFor="name">Country</nz-form-label>
+                <nz-form-control nzErrorTip="Please input your country!">
+                  <nz-input-group class="input-" [nzSuffix]="suffixIcon">
+                    <input type="text" formControlName="country" id="country" nz-input [(ngModel)]="inputValue"
+                    (ngModelChange)="onChange($event)"
+                    [nzAutocomplete]="auto"/>
+                    <nz-autocomplete [nzDataSource]="filteredOptions" #auto></nz-autocomplete>
+  
+                  </nz-input-group>
+                  <ng-template #suffixIcon>
+                    <span nz-icon nzType="down"></span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+              <div class="form-buttons">
+                <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                <button (click)="back()" class="back-button" nz-button>Back</button>
+              </div>
+            </form>
+          </nz-card>
+  
+          <!-- nz-card 5 -->
+          <nz-card *ngIf="index === 4" class="product-margin card-gradient">
+            <div class="first">
+              <span class="store-name">Product Type</span>
+              <span class="store-info">Specify the product you will working with </span>
+            </div>
+            <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  
+              <div class="product-info">
+                <div class="first-row">
+                  <div class="product">
+                    <div class="checkbox"><label nz-checkbox></label></div>
+  
+                    <div class="product-type">
+                      <div class="product-type-info">
+                        <span class="text-title">Online store</span>
+                        <span class="text-info">This text is an example of placeholder text </span>
+                      </div>
+                      <img nz-image nzSrc="assets/images/online-shop.png" alt="online-shop">
+                    </div>
+                  </div>
+  
+                  <div class="product">
+                    <div class="checkbox"><label nz-checkbox></label></div>
+                    <div class="product-type">
+                      <div class="product-type-info">
+                        <span class="text-title">Shopping online</span>
+                        <span class="text-info">This text is an example of placeholder text </span>
+                      </div>
+                      <img nz-image nzSrc="assets/images/shopping-online.png" alt="shopping-online">
+  
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="first-row">
+                  <div class="product">
+                    <div class="checkbox"><label nz-checkbox></label></div>
+                    <div class="product-type">
+                      <div class="product-type-info">
+                        <span class="text-title">Yseer cashier</span>
+                        <span class="text-info">This text is an example of placeholder text </span>
+                      </div>
+                      <img nz-image nzSrc="assets/images/cashier.png" alt="cashier">
+  
+                    </div>
+                  </div>
+  
+                  <div class="product">
+                    <div class="checkbox"><label nz-checkbox></label></div>
+  
+                    <div class="product-type">
+                      <div class="product-type-info">
+                        <span class="text-title">Yseer invoices</span>
+                        <span class="text-info">This text is an example of placeholder text </span>
+                      </div>
+                      <img nz-image nzSrc="assets/images/bill.png" alt="bill">
+  
+                    </div>
+                  </div>
+                </div>
+  
+  
+              </div>
+  
+              <div class="form-buttons">
+                <button (click)="next()" class="next-button" nz-button nzType="primary">Next</button>
+                <button (click)="back()" class="back-button" nz-button>Back</button>
+              </div>
+  
+            </form>
+          </nz-card>
+  
+          <!-- nz-card 6  -->
+          <div class="packages" *ngIf="index === 5">
+  
+            <div class="packages-button">
+              <div class="duration">
+                <button nz-button class="year">Annual</button>
+                <button nz-button class="month">Monthly</button>
+              </div>
+            </div>
+            <nz-card class="packages-card card-gradient">
+              <!-- first row  -->
+              <div class="packages-type">
+                <div class="package">
+                  <div class="every-package basic">
+                    <div class="typeof">
+                      <span>Basic</span>
+                      <div class="price">
+                        <span class="price-text">50,00$</span>
+                        <span class="price-duration">Monthly</span>
+                      </div>
+                    </div>
+                    <button nz-button>Select</button>
+                  </div>
+                  <div class="every-package">
+                    <div class="typeof">
+                      <span>Professional</span>
+                      <div class="price">
+                        <span class="price-text">90,00$</span>
+                        <span class="price-duration">Monthly</span>
+                      </div>
+                    </div>
+                    <button nz-button>Select</button>
+                  </div>
+                  <div class="every-package">
+                    <div class="typeof">
+                      <span>Advanced</span>
+                      <div class="price">
+                        <span class="price-text">110,00$</span>
+                        <span class="price-duration">Monthly</span>
+                      </div>
+                    </div>
+                    <button nz-button>Select</button>
+                  </div>
+  
+                 
+  
+              
+  
+                  <div class="every-package">
+                    <div class="typeof">
+                      <span>Free</span>
+                      <div class="price">
+                        <span class="price-text">00,00$</span>
+                        <span class="price-duration">Monthly</span>
+                      </div>
+                    </div>
+                    <button nz-button>Select</button>
+                  </div>
+  
+  
+                </div>
+              </div>
+              <!-- first table  -->
+              <div class="online-store">
+                <div class="store-title"><span>Online Store</span></div>
+  
+                <nz-table #firstTable [nzData]="listOfData" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}</td>
+                      <td>
+                        <span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num2 !== 'check' && data.num2  !== 'close'">{{data.num2}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num2 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num2 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num3 !== 'check' && data.num3  !== 'close'">{{data.num3}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num3 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num3 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num4 !== 'check' && data.num4  !== 'close'">{{data.num4}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num4 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num4 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+  
+              <!-- second table  -->
+              <div class="online-store">
+                <div class="store-title"><span>Sales Channels</span></div>
+  
+                <nz-table #secondTable [nzData]="listOfDataTow" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of secondTable.data">
+                      <td class="initial">{{data.store}}</td>
+                      <td>
+                        <span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num2 !== 'check' && data.num2  !== 'close'">{{data.num2}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num2 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num2 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num3 !== 'check' && data.num3  !== 'close'">{{data.num3}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num3 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num3 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num4 !== 'check' && data.num4  !== 'close'">{{data.num4}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num4 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num4 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+  
+  
+              <!-- third table  -->
+              <div class="online-store">
+                <div class="store-title"><span>Customers</span></div>
+  
+                <nz-table #secondTable [nzData]="listOfDataTow" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of secondTable.data">
+                      <td class="initial">{{data.store}}</td>
+                      <td class="">
+                        <span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num2 !== 'check' && data.num2  !== 'close'">{{data.num2}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num2 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num2 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num3 !== 'check' && data.num3  !== 'close'">{{data.num3}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num3 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num3 == 'close'" nzType="close"></span>
+                      </td>
+                      <td>
+                        <span *ngIf="data.num4 !== 'check' && data.num4  !== 'close'">{{data.num4}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num4 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num4 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="store-buttons">
+                <div class="select-buttons">
+                  <button (click)="next()" nz-button>Select</button>
+                  <button (click)="next()" nz-button>Select</button>
+                  <button (click)="next()" nz-button>Select</button>
+                  <button (click)="next()" nz-button>Select</button>
+                </div>
+              </div>
+  
+            </nz-card>
+          </div>
+          <!-- nzcard 7  -->
+          <nz-card *ngIf="index === 6" class="card-gradient">
+            <div class="Workspace">
+              <div class="workspace-img">
+                <img nz-image nzSrc="assets/images/workspace.png" alt="workspace">
+              </div>
+              <div class="Workspace-text">
+                <span class="Workspace-created">Workspace has been created successfully</span>
+                <span class="Workspace-account">Congratulations,your account is ready now,you can customize the work
+                  environment according to the follow steps</span>
+              </div>
+              <div class="Workspace-button">
+                <button>Start in Yseer now</button>
+              </div>
+            </div>
+          </nz-card>
+          <!-- carousel  -->
+          <ngb-carousel *ngIf="images">
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[0]" alt="Random first slide" />
+              </div>
+              <div class="carousel-caption">
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[1]" alt="Random second slide" />
+              </div>
+              <div class="carousel-caption">
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="images[2]" alt="Random third slide" />
+              </div>
+              <div class="carousel-caption">
+                <h3>Third slide label</h3>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+          <!-- <ngb-carousel [interval]="-1" [showNavigationIndicators]="false" *ngIf="index === 5">
+            <ng-template ngbSlide>
+              <div class="carousel-package">
+                <div class="every-package">
+                  <div class="typeof">
+                    <span>Professional</span>
+                    <div class="price">
+                      <span class="price-text">90,00$</span>
+                      <span class="price-duration">Monthly</span>
+                    </div>
+                  </div>
+                  <button nz-button>Select</button>
+                </div>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Online Store</span></div>
+                <nz-table #firstTable [nzData]="listOfData2" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Sales Channels</span></div>
+                <nz-table #firstTable [nzData]="listOfData3" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Customers</span></div>
+                <nz-table #firstTable [nzData]="listOfData4" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+                <div class="select-pack">
+                  <button (click)="next()" nz-button>Select</button>
+                </div>
+              </div>
+            </ng-template>
+  
+            <ng-template ngbSlide>
+              <div class="carousel-package">
+                <div class="every-package basic">
+                  <div class="typeof">
+                    <span>Basic</span>
+                    <div class="price">
+                      <span class="price-text">50,00$</span>
+                      <span class="price-duration">Monthly</span>
+                    </div>
+                  </div>
+                  <button nz-button>Select</button>
+                </div>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Online Store</span></div>
+                <nz-table #firstTable [nzData]="listOfData2" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Sales Channels</span></div>
+                <nz-table #firstTable [nzData]="listOfData3" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Customers</span></div>
+                <nz-table #firstTable [nzData]="listOfData4" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+                <div class="select-pack">
+                  <button (click)="next()" nz-button>Select</button>
+                </div>
+              </div>
+            </ng-template>
+  
+            <ng-template ngbSlide>
+              <div class="carousel-package">
+                <div class="every-package">
+                  <div class="typeof">
+                    <span>Advanced</span>
+                    <div class="price">
+                      <span class="price-text">110,00$</span>
+                      <span class="price-duration">Monthly</span>
+                    </div>
+                  </div>
+                  <button nz-button>Select</button>
+                </div>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Online Store</span></div>
+                <nz-table #firstTable [nzData]="listOfData2" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Sales Channels</span></div>
+                <nz-table #firstTable [nzData]="listOfData3" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Customers</span></div>
+                <nz-table #firstTable [nzData]="listOfData4" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+                <div class="select-pack">
+                  <button (click)="next()" nz-button>Select</button>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="carousel-package">
+                <div class="every-package">
+                  <div class="typeof">
+                    <span>Free</span>
+                    <div class="price">
+                      <span class="price-text">00,00$</span>
+                      <span class="price-duration">Monthly</span>
+                    </div>
+                  </div>
+                  <button nz-button>Select</button>
+                </div>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Online Store</span></div>
+                <nz-table #firstTable [nzData]="listOfData2" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Sales Channels</span></div>
+                <nz-table #firstTable [nzData]="listOfData3" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+              <div class="online-store">
+                <div class="store-title"><span>Customers</span></div>
+                <nz-table #firstTable [nzData]="listOfData4" [nzShowPagination]="'false'">
+  
+                  <tbody>
+                    <tr *ngFor="let data of firstTable.data">
+                      <td class="initial">{{data.store}}
+                      </td>
+                      <td><span *ngIf="data.num1 !== 'check' && data.num1  !== 'close'">{{data.num1}}</span>
+                        <span nz-icon [style.color]="'green'" *ngIf="data.num1 == 'check'" nzType="check"></span>
+                        <span nz-icon [style.color]="'red'" *ngIf="data.num1 == 'close'" nzType="close"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+                <div class="select-pack">
+                  <button (click)="next()" nz-button>Select</button>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-carousel> -->
+  
+        </nz-content>
+      </nz-layout>
+    </nz-content>
+  </nz-layout>

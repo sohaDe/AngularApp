@@ -1,0 +1,139 @@
+<nz-layout [dir]="isRtl ? 'rtl' : 'ltr'">
+    <nz-header>
+        <div class="logo hide">
+            <img nz-image nzSrc="assets/images/logo.png" alt="logo">
+        </div>
+
+        <div class="small-screen">
+          <div class="logo">
+            <img nz-image nzSrc="assets/images/logo.png" alt="logo">
+        </div>
+        <div class="plan">
+          <button nz-button class="login">Login</button>
+          <div class="plan-button"><button nz-button class="free-plan">Start free plan</button></div>
+      </div>
+
+        </div>
+        <ul nz-menu nzMode="horizontal">
+            <li nz-menu-item><a>Home</a></li>
+            <li nz-menu-item><a class="price">Pricing</a></li>
+            <li nz-menu-item><a>About Yseer</a></li>
+            <li nz-menu-item><a>Contact Us</a></li>
+        </ul>
+
+        <div class="plan hide">
+            <button nz-button class="login">Login</button>
+            <div class="plan-button"><button nz-button class="free-plan">Start free plan</button></div>
+        </div>
+        
+        <!-- addd  -->
+        <span class="menu-icon" (click)="toggleMenu()" nz-icon nzType="menu" ></span>
+        <ul *ngIf="isMenuVisible" class="toggleMenu" nz-menu nzMode="vertical">
+          <li nz-menu-item><a>Home</a></li>
+          <li nz-menu-item><a class="price">Pricing</a></li>
+          <li nz-menu-item><a>About Yseer</a></li>
+          <li nz-menu-item><a>Contact Us</a></li>
+      </ul>  
+      <!-- end  -->
+    </nz-header>
+
+    <nz-content>
+        <div class="card-content">
+            <div class="title">
+                <p>Select the country you will be operating in and the type of your product to view
+                    <span class="blue-text">pricing package.</span>
+                </p>
+                <!-- <div class="line"><span nz-icon nzType="line" ></span></div> -->
+            </div>
+            <div class="type">
+                <nz-input-group class="input-type" [nzSuffix]="suffixTemplateInfo" 
+                [nzPrefix]="selectCountry ? prefixTemplate : 'The country' ">
+                    <input type="text" nz-input (click)="toggleCountry()"/>
+                </nz-input-group>
+                <ng-template #suffixTemplateInfo>
+                    <span nz-icon nzType="down" nzTheme="outline"></span>
+                </ng-template>
+                <ng-template #prefixTemplate>
+                  <span class="fi" [ngClass]="'fi-' + getCountryIcon(selectCountry)"></span><span>{{selectCountry}}</span>
+                </ng-template>
+                <ul class="country-ul" nz-menu *ngIf="showCountryMenu">
+                    <li nz-menu-item (click)="selectedCountry('United State')"><span class="fi fi-us fis"></span>United State</li>
+                    <li nz-menu-item (click)="selectedCountry('United Arab Emirates')"> <span class="fi fi-sa fis"></span>United Arab Emirates</li>
+                    <li nz-menu-item (click)="selectedCountry('France')"><span class="fi fi-fr fis"></span>France</li>
+                    <li nz-menu-item (click)="selectedCountry('Germany')"><span class="fi fi-de fis"></span>Germany</li>
+                    <li nz-menu-item (click)="selectedCountry('Italy')"><span class="fi fi-it fis"></span>Italy</li>
+                    <li nz-menu-item (click)="selectedCountry('China')"><span class="fi fi-cn fis"></span>China</li>
+                </ul>
+            </div>
+                <div class="product-info">
+                    <div class="first-row">
+                      <div class="product">
+                        <div class="checkbox"><label nz-checkbox></label></div>
+      
+                        <div class="product-type">
+                          <div class="product-type-info">
+                            <span class="text-title">Online store</span>
+                            <span class="text-info">This text is an example of placeholder text </span>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="product">
+                        <div class="checkbox"><label nz-checkbox></label></div>
+                        <div class="product-type">
+                          <div class="product-type-info">
+                            <span class="text-title">Shopping online</span>
+                            <span class="text-info">This text is an example of placeholder text </span>
+                          </div>
+      
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="first-row">
+                      <div class="product">
+                        <div class="checkbox"><label nz-checkbox></label></div>
+                        <div class="product-type">
+                          <div class="product-type-info">
+                            <span class="text-title">Yseer cashier</span>
+                            <span class="text-info">This text is an example of placeholder text </span>
+                          </div>
+      
+                        </div>
+                      </div>
+      
+                      <div class="product">
+                        <div class="checkbox"><label nz-checkbox></label></div>
+      
+                        <div class="product-type">
+                          <div class="product-type-info">
+                            <span class="text-title">Yseer invoices</span>
+                            <span class="text-info">This text is an example of placeholder text </span>
+                          </div>
+      
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="show-package">
+                  <button nz-button class="show-price">Display price packages</button>
+                  
+                </div>
+        </div>
+
+    </nz-content>
+
+    <nz-footer>
+      <span>All rights reserved, Yseer</span>
+      <div class="lang">
+          <span>Language:</span>
+          <div class="color-lang">
+              <span class="select-language">En</span>
+              <span class="down-lang" nz-icon nzType="down"></span>
+          </div>
+      </div>
+    </nz-footer>
+
+
+</nz-layout>

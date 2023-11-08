@@ -1,0 +1,382 @@
+* {
+    font-family: IBM Plex Sans;
+    font-feature-settings: 'clig' off, 'liga' off;
+  }
+  
+  nz-header {
+    display: flex;
+    height: 80px;
+    padding: 20px 80px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    row-gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(28, 39, 49, 0.03);
+  }
+  
+  .logo {
+    color: rgba(25, 117, 255, 1);
+    font-weight: bold;
+  }
+  
+  .dropdown-but {
+    height: 40px;
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--black-black-100, #E6E6E6);
+    background-color: white;
+  }
+  
+  .fi {
+    width: 28px;
+    height: 16px;
+  }
+  
+  .language {
+    color: var(--black-black, #212121);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  nz-content {
+    padding: 118px 80px 80px 80px;
+    background-color: rgba(248, 249, 251, 1);
+  }
+  
+  .row {
+    flex-wrap: nowrap !important;
+  }
+  
+  .hide {
+    position: relative;
+  }
+  
+  .hide::before {
+    content: "";
+    position: absolute;
+    top: 291px;
+    filter: blur(117px);
+    left: 86px;
+    background: radial-gradient(rgba(94, 158, 255, 1), rgba(255, 255, 255, 1));
+    width: 108px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  
+  
+  .hide img {
+    margin-top: 230px;
+    width: 100%;
+    transform: scaleX(-1);
+    position: relative;
+  }
+  
+  .unhide {
+    flex: 1;
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  nz-card {
+    background-color: rgba(248, 249, 251, 1);
+  }
+  
+  .form-card {
+    background-color: white;
+    padding: 34px !important;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px 0px rgba(28, 39, 49, 0.03);
+  }
+  
+  .first {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+    margin-bottom: 24px;
+  }
+  
+  .first-login {
+    color: var(--black-black, #212121);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: stretch;
+    text-align: initial;
+  }
+  
+  .first-welcome {
+    color: var(--black-black-800, #4D4D4D);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: initial;
+  }
+  
+  .input- {
+    height: 50px;
+    padding: 0 11px !important;
+    border-radius: 5px;
+    border: 1px solid var(--black-black-100, #E6E6E6);
+  
+  }
+  
+  .input-icon {
+    width: 30px;
+    height: 20px;
+  }
+  
+  .down-icon {
+    width: 22px;
+  }
+  
+  .label {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    letter-spacing: 0px !important;
+    color: #212121 !important;
+  }
+  
+  .coupon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+  }
+  
+  .coupon input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+  }
+  ::ng-deep .ant-col-offset-4{
+    padding: 0;
+  }
+  .coupon button {
+    display: flex;
+    height: 38px;
+    padding: 10px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background: var(--white-white-300, #F0F0F0);
+  }
+  
+  .forget {
+    width: 100% !important;
+  }
+  
+  .forget p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(99, 99, 99, 1);
+    margin-bottom: 0 !important;
+  }
+  
+  .phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background-color: white;
+    border-left: 1px solid rgb(230, 230, 230);
+    margin-left: 8px;
+  }
+  
+  ::ng-deep input[type=text] {
+    text-align: end;
+  }
+  
+  .phone .fi {
+    width: 32px;
+    height: 22px;
+  }
+  
+  .phone .down {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .phone .line {
+    color: rgba(230, 230, 230, 1);
+  }
+  
+  .login-form-margin {
+    margin-bottom: 5px;
+  }
+  
+  .login-form-button {
+    margin-bottom: 16px !important;
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgba(25, 117, 255, 1);
+    padding: 0 15px !important;
+    height: 48px;
+  }
+  
+  .account {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .account span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .register-now {
+    color: #1975FF;
+  }
+  
+  .container {
+    margin-top: 58px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container span {
+    font-size: 14px !important;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #636363;
+    font-style: normal;
+  }
+  
+  .ant-tabs-tab {
+    padding: 15px 49px;
+  }
+  
+  .inner-content {
+    background: #fff;
+  }
+  
+  lpx-language-selection {
+    display: none !important;
+  }
+  
+  nz-card.ant-card-body {
+    padding: 0px !important;
+  }
+  
+  nz-layout[dir="rtl"] .hide img {
+    transform: unset;
+  }
+  
+  nz-layout[dir="rtl"] .ant-col-offset-4 {
+    margin-right: 16.66666667%;
+    margin-left: 0;
+  }
+  
+  nz-layout[dir="rtl"] .ant-form-vertical .ant-form-item-label {
+    text-align: right;
+  }
+  
+  nz-layout[dir="rtl"] .phone {
+    border-right: 1px solid rgb(230, 230, 230);
+    margin-right: 8px;
+    border-left: unset;
+    margin-left: 0;
+  }
+  
+  @media (max-width:912px) {
+    .invitation-coupon{display: block !important; margin-top: 16px;}
+    .invitation-coupon span{
+      color: var(--black-black-700, #636363);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    .container{
+      margin-top:40px
+    }
+    nz-content {
+      padding: 128px 128px 96px 128px;
+    }
+  
+    nz-header {
+      padding: 16px 40px;
+    }
+    .coupon-item{display: none;}
+  
+    .hide {
+      display: none;
+    }
+  
+    .img {
+      display: none;
+    }
+  
+    .unhide {
+      margin-left: 0 !important;
+    }
+  }
+  
+  @media (max-width:540px) {
+    nz-content {
+      padding: 0
+    }
+    .container{
+      margin-top:24px
+    }
+  
+    .form-card {
+      border-radius: 0;
+      padding: 0 !important;
+    }
+  
+    ::ng-deep .ant-card-body {
+      padding: 24px 20px;
+    }
+  
+    nz-header {
+      padding: 16px 20px;
+    }
+  
+    .unhide {
+      padding: 0 12px;
+    }
+  }
+  
+  @media (max-width:280px) {
+    .account {
+      flex-direction: column;
+    }
+  
+    .container {
+      display: block;
+    }
+  
+    nz-header {
+      padding: 0 !important;
+      justify-content: space-around;
+    }
+  }
+  .invitation-coupon{display: none;}
+  

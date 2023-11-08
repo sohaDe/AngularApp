@@ -1,0 +1,220 @@
+<nz-layout [dir]="isRtl ? 'rtl' : 'ltr'">
+    <div class="all-content">
+        <div class="all-head">
+            <div class="first-head">
+                <div class="head">
+                    <div class="inputhead">
+                        <div class="show"><span nz-icon nzType="eye"></span><span class="name">Show store</span></div>
+                        <div class="show padding-show"><span class="name">Branch name</span><span nz-icon
+                                nzType="down"></span></div>
+                        <nz-input-group class="head-input" [nzPrefix]="suffixIconSearch">
+                            <input type="text" nz-input placeholder="Search" />
+                        </nz-input-group>
+                        <ng-template #suffixIconSearch>
+                            <span nz-icon nzType="search"></span>
+                        </ng-template>
+                    </div>
+                    <div class="otherhead">
+                        <span class="span-padding" nz-icon nzType="question-circle" nzTheme="outline"></span>
+                        <span class="span-padding" nz-icon nzType="bell" nzTheme="outline"></span>
+                        <img class="head-img" nz-image width="38px" height="38px" nzSrc="assets/images/photo1.png"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="second-head">
+                <span class="name">Orders</span>
+                <button nz-button nzType="primary">
+                    <span nz-icon nzType="plus"></span>
+                    Add order
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="line">
+                <div class="month">
+                    <div class="this-month">
+                        <span nz-icon nzType="calendar"></span>
+                        <span class="title">Month</span>
+                    </div>
+                    <span nz-icon nzType="down"></span>
+                </div>
+                <div class="number-of-orders">
+
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">550</span>
+                            <span class="type">All orders</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">44</span>
+                            <span class="type">New</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">28</span>
+                            <span class="type">Awaiting payment</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">8</span>
+                            <span class="type">Payment done</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">48</span>
+                            <span class="type">Awaiting shipped</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">--</span>
+                            <span class="type">Shipped done</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">68</span>
+                            <span class="type">Ready</span>
+                        </div>
+                    </div>
+                    <div class="every-type">
+                        <div class="title">
+                            <span class="number">10</span>
+                            <span class="type">Completed</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            <nz-card class="size">
+                <div>
+                    <nz-tabset>
+                        <nz-tab nzTitle="All orders"></nz-tab>
+                        <nz-tab nzTitle="New"></nz-tab>
+                        <nz-tab nzTitle="Awaiting payment"></nz-tab>
+                        <nz-tab nzTitle="Payment done"></nz-tab>
+                        <nz-tab nzTitle="Awaiting shipped"></nz-tab>
+                        <nz-tab nzTitle="Shipped done"></nz-tab>
+                        <nz-tab nzTitle="Ready"></nz-tab>
+                        <nz-tab nzTitle="Completed"></nz-tab>
+                    </nz-tabset>
+                </div>
+                <br>
+                <div class="show-row">
+                    <div class="select">
+                        <label class="select-label text common-padding" nz-checkbox>Select all</label>
+                        <button class="button-joint button-flex text" nz-button>Joint procedures<span nz-icon
+                                nzType="down"></span></button>
+                    </div>
+                    <div class="search-show">
+                        <div>
+                            <ng-template #suffixIconSearch>
+                                <span nz-icon nzType="search"></span>
+                            </ng-template>
+                            <nz-input-group class="search-input" [nzSuffix]="suffixIconSearch">
+                                <input type="text" #searchText nz-input placeholder="Search" />
+                            </nz-input-group>
+                        </div>
+                        <button class="text common-padding button-flex" nz-button><span nz-icon
+                                nzType="filter"></span>Filter by</button>
+                        <button class="text common-padding button-flex" nz-button><span nz-icon nzType="swap"
+                                [nzRotate]="90"></span>Show by</button>
+                    </div>
+                </div>
+
+                <nz-table class="nz-responsive" #basicTable [nzData]="listOfData" [nzShowPagination]="false"
+                    [nzOuterBordered]="isTableBorderd()">
+
+                    <thead>
+                        <tr>
+                            <th class="first-th" nzLeft>Order id</th>
+                            <th>Customer</th>
+                            <th>Order price</th>
+                            <th>Order date</th>
+                            <th>Order type</th>
+                            <th>Sales channel</th>
+                            <th>Payment</th>
+                            <th>shipping</th>
+                            <th>Order status</th>
+                            <th nzRight></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of basicTable.data">
+                            <ng-container *ngIf="!filteredStatus.length || filteredStatus.includes(data.status)">
+                                <td nzLeft nzShowCheckbox="'true'">{{ data.id }}#</td>
+                                <td>{{data.customer}}<span class="down-icon" nz-icon nzType="down"></span></td>
+                                <td>{{data.price}}$</td>
+                                <td>{{ data.date}}</td>
+                                <td>{{ data.type }}</td>
+                                <td>{{ data.salesChannel }}</td>
+                                <td>
+                                    <span nz-icon [style.color]="'green'" *ngIf="data.payment == 'Paid'"
+                                        nzType="check"></span>
+                                    <span nz-icon [style.color]="'red'" *ngIf="data.payment !== 'Paid'"
+                                        nzType="close"></span>
+                                </td>
+                                <td>
+                                    <span nz-icon [style.color]="'green'" *ngIf="data.shipping == 'Shipped'"
+                                        nzType="check"></span>
+                                    <span nz-icon [style.color]="'red'" *ngIf="data.shipping !== 'Shipped'"
+                                        nzType="close"></span>
+                                </td>
+                                <td><nz-tag [nzColor]="getColor(data.status)">{{data.status}}</nz-tag></td>
+                                <td nzRight class="last-td"><span class="ellipsis-icon" nz-icon
+                                        nzType="ellipsis"></span></td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </nz-table>
+                <div class="page">
+                    <nz-pagination [(nzPageIndex)]="current" [nzTotal]="40" [nzSize]="'small'"></nz-pagination>
+                    <div class="on-page">
+                        <span nz-icon nzType="down"></span>
+                        <span>10</span>
+                    </div>
+                </div>
+            </nz-card>
+            <div class="help">
+                <div class="need-help">
+                    <span nz-icon nzType="question-circle" nzTheme="outline"></span>
+                    <span>Need help?</span>
+                </div>
+            </div>
+
+
+        </div>
+        <nz-footer>
+            <span>All rights reserved, Yseer</span>
+            <!-- <div class="lang">
+                <span>Language:</span>
+                <div>
+                    <span class="select-language">En</span>
+                    <span nz-icon nzType="down"></span>
+                </div>
+            </div> -->
+            <button class="dropdown-but" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                <span class="fi" [ngClass]="getFlagIconClass()"></span>
+                <span class="language">{{ isRtl ? 'العربية' : 'En' }}</span>
+                <span nz-icon nzType="down" nzTheme="outline"></span>
+              </button>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item (click)="switchToRtl('en')"><span class="fi fi-us fis"></span>En</li>
+                  <li nz-menu-item (click)="switchToRtl('ar')"> <span class="fi fi-sa fis"></span>العربية</li>
+                </ul>
+              </nz-dropdown-menu>
+        </nz-footer>
+
+    </div>
+</nz-layout>
